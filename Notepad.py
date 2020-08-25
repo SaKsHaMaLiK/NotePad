@@ -7,6 +7,11 @@ from tkinter import ttk
 from datetime import datetime
 import webbrowser
 
+root = tk.Tk()
+root.geometry('500x500')
+root.title('notepad')
+root.iconbitmap('notepad.ico')
+
 
 menubar = Menu(root)
 
