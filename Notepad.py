@@ -85,3 +85,23 @@ def new_window():
             save_as()
         else:
             root.destroy()
+
+    def undo():
+        pass
+
+    def cut():
+        text.event_generate("<<Cut>>")
+
+    def copy():
+        text.event_generate("<<Copy>>")
+
+    def paste():
+        text.event_generate("<<Paste>>")
+
+    def delete():
+        message = messagebox.askquestion(
+            'Notepad', "Do you want to Delete all")
+        if message == "yes":
+            text.delete('1.0', 'end')
+        else:
+            return "break"
