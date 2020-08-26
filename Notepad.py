@@ -15,8 +15,6 @@ def new():
 def new_window():
     root = tk.Tk()
     root.geometry('500x500')
-    root.title('notepad')
-    root.iconbitmap('notepad.ico')
 
     menubar = Menu(root)
 
@@ -171,3 +169,55 @@ def new_window():
             cancel = Button(root,text="Cancel",relief=RIDGE,borderwidth=2,padx=20,command=Cnl)
             cancel.place(x=295,y=350)
             root.mainloop()
+
+    def view_help():
+        webbrowser.open('#')
+
+    def send_feedback():
+        webbrowser.open('#')
+
+
+    root = tk.Tk()
+    root.geometry('500x500')
+    root.title('notepad')
+    root.iconbitmap('notepad.ico')
+    menubar = Menu(root)
+
+    file = Menu(menubar,tearoff = 0)
+    file.add_command(label="New",command=new)
+    file.add_command(label="New window",command=new_window)
+    file.add_command(label="Open",command=Open)
+    file.add_command(label="Save",command=save)
+    file.add_command(label="Save as", command=save_as)
+    file.add_separator()
+    file.add_command(label="Exit",command=exit)
+    menubar.add_cascade(label="File",menu=file,font=('verdana',10,'bold'))
+
+    edit = Menu(menubar,tearoff = 0)
+
+    edit.add_command(label="Undo",accelerator="Ctrl+Z",command=undo)
+    edit.add_separator()
+    edit.add_command(label="Cut",accelerator="Ctrl+X",command=cut)
+    edit.add_command(label="Copy",accelerator="Ctrl+C",command=copy)
+    edit.add_command(label="Paste",accelerator="Ctrl+V",command=paste)
+    edit.add_command(label="Delete",accelerator="Del",command=delete)
+    edit.add_command(label="Select All",accelerator="Ctrl+A",command=select_all)
+    edit.add_command(label="Time/Date",accelerator="F5",command=time)
+    menubar.add_cascade(label="Edit",menu=edit)
+
+
+    Format = Menu(menubar, tearoff = 0)
+    Format.add_command(label="Word Wrap")
+    Format.add_command(label="Font...", command=fonts)
+    menubar.add_cascade(label="Format",menu=Format)
+
+    Help = Menu(menubar, tearoff = 0)
+    Help.add_command(label="View Help",command=view_help)
+    Help.add_command(label="Send FeedBack",command=send_feedback)
+    Help.add_command(label="About Notepad")
+
+    menubar.add_cascade(label="Help",menu=Help)
+    root.config(menu=menubar)
+    text = ScrolledText(root,width=1000,height=1000)
+    text.place(x=0,y=0)
+    root.mainloop()
